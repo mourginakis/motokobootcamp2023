@@ -40,7 +40,6 @@ actor {
   // 6
   public query func is_even(n : Nat) : async Bool {
     n % 2 == 0;
-  }
-
+  };
 
 };
