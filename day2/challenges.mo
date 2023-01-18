@@ -36,9 +36,28 @@ actor {
 
     // 5
     public func find_duplicates(a : [Nat]) : async [Nat] {
-        Buffer.new();
 
-        [1, 2];
+        let a_ = Buffer.fromArray<Nat>(a);
+
+        let dupes = Buffer.clone(a_);
+        dupes.sort(Nat.compare);
+        let dupes1 = Buffer.groupBy(dupes, Nat.equal);
+        dupes1.filterEntries(
+            func (_, e) {if (e.size() > 1) {return true} else {return false}}
+        );
+
+        let flattened = Buffer.flatten(dupes1);
+
+        let final = Buffer.Buffer<Nat>(0);
+        for (n in a.vals()) {
+            if (Buffer.contains(flattened, n, Nat.equal)
+            and not Buffer.contains(final, n, Nat.equal)
+            ) {
+                final.add(n);
+            }
+        };
+
+        Buffer.toArray(final);
     };
 
     // 6
@@ -101,10 +120,7 @@ actor {
         assert (q61 == "0");
         Debug.print("q6 pass");
 
-
-        Debug.print("\n\n\n");
-        Debug.print(debug_show(Iter.toArray(Iter.range(1, 0))));
-        Debug.print(debug_show(q1));
+        Debug.print("All tests passing!");
     };
  
 }
