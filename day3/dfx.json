@@ -1,7 +1,7 @@
 {
     "canisters": {
         "challenges": {
-            "main": "challenges.mo",
+            "main": "main.mo",
             "type": "motoko"
         }
     },
