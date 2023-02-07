@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function test:mo {
+    for i in $(find . -name '*.test.mo')
+    do
+      echo $i
+      $(vessel bin)/moc $(vessel sources 2>/dev/null) -r $i; 
+      echo
+    done
+}
+
+function main {
+    echo "main"
+}
+
+
+
+case $1 in
+  "test:mo")        test:mo;;             # ./run test:mo
+  "main")           main;;                # ./run main
+  *)                errmsg;;              # ./run
+esac
