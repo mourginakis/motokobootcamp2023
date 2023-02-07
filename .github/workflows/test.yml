@@ -1,0 +1,17 @@
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aviate-labs/setup-dfx@v0.2.3
+        with:
+          dfx-version: 0.12.1
+          vessel-version: 0.6.4
+      - run: dfx --version
+      - run: vessel --version
+      - run: $(vessel bin)/moc --version
+      - uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+      - run: node --version
