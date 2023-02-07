@@ -4,6 +4,7 @@ function test:mo {
     for i in $(find . -name '*.test.mo')
     do
       echo $i
+      set -e
       $(vessel bin)/moc $(vessel sources 2>/dev/null) -r $i; 
       echo
     done
