@@ -15,3 +15,4 @@ jobs:
         with:
           node-version: 18
       - run: node --version
+      - run: npx ts-node --version
